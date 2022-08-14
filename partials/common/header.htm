@@ -1,0 +1,27 @@
+<header class="fixed top-0 left-0 right-0 bg-white py-2 z-50">
+  <div class="container flex items-center justify-between">
+    <div class="text-2xl text-sky font-sans font-bold uppercase mr-8">
+      <a href="/">
+        Интголос
+      </a>
+    </div>
+    <nav>
+      {% component 'generalMenu' %}
+    </nav>
+    <div class="flex items-center">
+      <a 
+        href="https://vk.com/intgolos"
+        class="text-white text-base font-sans font-bold bg-sky rounded-md"
+      >
+        {% partial 'common/icon' class="w-10 h-10 rounded-full text-sky bg-white stroke-0 border-2 border-white" icon="vk" %}
+      </a
+      >
+      <a 
+        href="https://intgolos.ru/pay"
+        class="text-white text-base font-sans font-bold bg-sky rounded-md py-2 px-6 ml-4"
+      >
+        Участвовать
+      </a>
+    </div>
+  </div>
+</header>

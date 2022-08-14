@@ -1,0 +1,76 @@
+@import './!common/_';
+@import './aos/_';
+
+@tailwind base;
+
+@layer base {
+  input[type='text'],
+  input[type='password'],
+  input[type='email'],
+  input[type='number'],
+  input[type='url'],
+  input[type='date'],
+  input[type='datetime-local'],
+  input[type='month'],
+  input[type='week'],
+  input[type='time'],
+  input[type='search'],
+  input[type='tel'],
+  input[type='checkbox'],
+  input[type='radio'],
+  select,
+  select[multiple],
+  textarea {
+    // @apply placeholder:text-stone border-none font-sans text-sm text-secondary-dark leading-5 tracking-wide focus:ring-2 focus:ring-offset-0 focus:ring-active
+  }
+}
+
+@tailwind components;
+
+@layer components {
+  @import './carousel/_';
+
+  @import './scrollbar/_';
+
+  .line {
+    @apply block w-1/5 h-[1px] bg-white;  
+  }
+
+  .btn {
+    @apply p-4 lg:px-8 font-sans font-extrabold text-base text-white tracking-wider rounded-25 flex items-center;
+  }
+
+  .carousel {
+    &-hero {
+      --carouselSlidesCount:auto;
+      --carouselSlidesGap:60px;
+    }
+
+    &-why-us {
+      --carouselSlidesCount:auto;
+      --carouselSlidesGap:32px;
+    }
+
+    &-testimonials {
+      --carouselSlidesCount:3;
+      --carouselSlidesGap:46px;
+    }
+
+    &-stack {
+      --carouselSlidesCount:10;
+      --carouselSlidesGap:40px;
+    }
+  }
+
+  .menu {
+    @apply 
+      max-w-[50px] max-h-[50px] w-screen h-screen bg-light rounded-bl-25 ml-auto mr-0 transition-all duration-300 ease-linear
+      lg:max-w-full lg:max-h-full lg:h-auto lg:bg-transparent lg:mt-16
+  }
+
+  @import './menu-toggle/_';
+
+  @import './dropdown/_';
+}
+
+@tailwind utilities;

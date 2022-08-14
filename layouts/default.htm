@@ -1,0 +1,52 @@
+description = "Шаблон по умолчанию"
+
+[staticMenu generalMenu]
+code = "general-menu"
+
+[staticBreadcrumbs]
+
+[staticPage]
+useContent = 1
+default = 0
+==
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  {% partial 'common/head' %}
+</head>
+  <body 
+    class="flex flex-col min-h-screen bg-fore-ground"
+    {#x-data="scrollLock"#}
+  >
+    {{ this.theme.include_body_begin }}
+    {% partial 'common/header' %}
+
+    {% if this.page.id != 'home' %}
+      {% partial 'common/breadcrumbs' %}
+    {% endif %}
+    
+    <div>
+      <main>
+        {% page %}
+      </main>    
+      
+      {% if isHasSidebar %}
+      <aside>
+          <div>
+            <div>
+              Подстраницы
+            </div>
+            {% component "childPages" %}
+          </div>
+      </aside>
+      {% endif %}
+    </div>
+    
+    {# {% partial 'common/footer' %} #}
+    
+    {% partial 'common/scripts' %}
+    {{ this.theme.include_body_end }}
+  </body>
+</html>
+{% endspaceless %}
