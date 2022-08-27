@@ -6,12 +6,12 @@ editor:
     content: 
       type: richeditor
 
-hero:
+intro:
   name: Карусель
   description: Карусель
   icon: icon-film
   fields:
-    hero_item: 
+    items: 
       type: repeater
       prompt: Добавить слайд
       style: collapsed

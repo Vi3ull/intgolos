@@ -1,0 +1,58 @@
+==
+<?php
+function onStart() {
+  $description = '
+    <h3>ФОТО/ВИДЕО ОТЧЕТЫ</h3>
+    <p>В этом блоке мы размещаем некоторые отчеты о записи победителей</p>
+  ';
+
+  $this->page['description'] = $description;
+
+  $items = [
+    0 => [
+      'name' => "Нифонтов Александр",
+      'age' =>  '23',
+      'city' => 'Москва',
+      'points' => '3658',
+      'prize' => 'ПРИЗ: ЗАПИСЬ ПЕСНИ В СТУДИИ',
+      'video' => 'https://via.placeholder.com/500x335'
+    ],
+    1 => [
+      'name' => "Нифонтов Александр",
+      'age' =>  '23',
+      'city' => 'Москва',
+      'points' => '3658',
+      'prize' => 'ПРИЗ: ЗАПИСЬ ПЕСНИ В СТУДИИ',
+      'video' => 'https://via.placeholder.com/500x335'
+    ]
+  ];
+
+  $this->page['items'] = $items;
+}
+?>
+==
+<section class="py-24">
+  <div class="container">
+    <div class="prose max-w-none text-center">
+      {{ this.page.description | raw }}
+    </div>
+    <ul class="flex flex-col my-10">
+      {% for item in this.page.items %}
+      <li class="basis-full md:basis-8/12 flex-grow-0 rounded-md p-4 odd:self-start even:self-end">
+        <div class="basis-4/12 prose max-w-none bg-white p-4 rounded-tl-md rounded-bl-md {{ loop.index is even ? 'order-last rounded-tl-none rounded-bl-none rounded-tr-md rounded-br-md' : '' }}">
+          <h4>{{ item.name }}</h4>
+          {{ item.age }}
+          {{ item.city }}
+          {{ item.points }}
+          {{ item.prize }}
+        </div>
+        <div class="relative basis-8/12 before:w-full before:pb-video before:animate-pulse before:bg-gray-300 before:rounded-md rounded-md shadow-md shadow-gray-500">
+          <picture>
+            <img src="{{ item.video }}" alt="" class="absolute inset-0 w-full h-full rounded-md">
+          </picture>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

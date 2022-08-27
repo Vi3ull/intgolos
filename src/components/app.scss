@@ -1,9 +1,22 @@
 @import './!common/_';
-@import './aos/_';
 
 @tailwind base;
 
 @layer base {
+  :root {
+    --padding-x: 1rem;
+    --clrHeader: 255 255 255;
+    --clrBody: 255 255 255;
+    --clrFooter: 63 63 70;
+    --clrHeading: 15 117 246;
+    --clrText: 75 85 99;
+    --clrLink: 54 53 48;
+    --clrCta: 15 117 246;
+    --clrSelection: 15 117 246;
+    --clrHover: 15 117 246;
+    --clrOverlay: 4 8 20;
+  }
+
   input[type='text'],
   input[type='password'],
   input[type='email'],
@@ -36,9 +49,9 @@
     @apply block w-1/5 h-[1px] bg-white;  
   }
 
-  .btn {
-    @apply p-4 lg:px-8 font-sans font-extrabold text-base text-white tracking-wider rounded-25 flex items-center;
-  }
+  // .btn {
+  //   @apply p-4 lg:px-8 font-sans font-extrabold text-base text-white tracking-wider rounded-25 flex items-center;
+  // }
 
   .carousel {
     &-hero {
@@ -62,11 +75,11 @@
     }
   }
 
-  .menu {
-    @apply 
-      max-w-[50px] max-h-[50px] w-screen h-screen bg-light rounded-bl-25 ml-auto mr-0 transition-all duration-300 ease-linear
-      lg:max-w-full lg:max-h-full lg:h-auto lg:bg-transparent lg:mt-16
-  }
+  // .menu {
+  //   @apply 
+  //     max-w-[50px] max-h-[50px] w-screen h-screen bg-light rounded-bl-25 ml-auto mr-0 transition-all duration-300 ease-linear
+  //     lg:max-w-full lg:max-h-full lg:h-auto lg:bg-transparent lg:mt-16
+  // }
 
   @import './menu-toggle/_';
 

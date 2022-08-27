@@ -1,24 +1,22 @@
-<section 
-  class="container"
-  data-aos="fade-right"
-  data-aos-offset="500"
-  data-aos-duration="500"
->
-  <div class="-ml-container bg-light py-11 pr-12 rounded-tr-25 rounded-br-25">
-    <div class="pl-container flex items-center justify-between">
-      <div class="font-extrabold text-2xl text-active leading-6.5 tracking-widest">
-        How About You?
-      </div>
-      <a 
-        href="#" 
-        class="btn w-fit font-sans font-extrabold text-base bg-active text-white leading-relaxed tracking-widest"
-        data-aos="fade-right"
-        data-aos-offset="500"
-        data-aos-duration="500"
-      >
-        <span class="hidden sm:inline-flex">Make A Testimony</span>
-        {% partial 'common/icon' class="sm:hidden fill-transparent stroke-current stroke-2 w-6 h-6 -rotate-90" icon="arrow" %}
-      </a>
+==
+<?php
+function onStart() {
+  $description = '
+    <h2>Подключайтесь к ИНТГОЛОС</h2>
+    <p>География, возраст, пол и навыки не важны</p>
+    <br>
+    <a href="#" class="btn btn--flare before:animate-flare">Принять участие</a>
+  ';
+
+  $this->page['description'] = $description;
+}
+?>
+==
+
+<section class="flex items-center justify-center bg-offer bg-center bg-no-repeat bg-cover bg-fixed min-h-offer h-full">
+  <div class="container my-11">
+    <div class="prose max-w-none text-center prose-headings:text-white prose-p:text-white prose-a:text-white">
+      {{ this.page.description | raw }}
     </div>
   </div>
 </section>

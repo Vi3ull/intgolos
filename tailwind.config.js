@@ -1,5 +1,19 @@
 let plugin = require('tailwindcss/plugin')
 
+const round = (num) =>
+  num
+    .toFixed(7)
+    .replace(/(\.[0-9]+?)0+$/, '$1')
+    .replace(/\.0$/, '')
+const rem = (px) => `${round(px / 16)}rem`
+const em = (px, base) => `${round(px / base)}em`
+const lh = (fontSize, lineHeight) => `${round(lineHeight / fontSize)}`
+// const paddingX = (screenSize, px) => {
+//   return `calc(50vw - calc(50vw - ${(((px * 100) / (screenSize / 2))}))`;
+// }
+// import { rem, em, lh } from './src/tw-components/!common/functions';
+
+
 module.exports = {
   content: [
     'layouts/**/*.{htm,js}',
@@ -19,55 +33,202 @@ module.exports = {
       '2xl': '1536px',
     },
     fontFamily: {
-      'sans': ['Nunito Sans', 'sans-serif']
+      'nunito': "'Nunito Sans', 'sans-serif'"
     },
     extend: {
+      spacing: {
+        'container': 'var(--padding-x)',
+        'video': '56.25%',
+      },
+      maxWidth: {
+        '1/3': '33.333%',
+      },
+      minHeight: {
+        'offer': rem(600),
+      },
       colors: {
-        'sky': {
-          'DEFAULT': '#0f75f6',
-        },
+        'clr-header': 'rgb(var(--clrHeader) / 1)',
+        'clr-body': 'rgb(var(--clrBody) / 1)',
+        'clr-footer': 'rgb(var(--clrFooter) / 1)',
+        'clr-heading': 'rgb(var(--clrHeading) / 1)',
+        'clr-text': 'rgb(var(--clrText) / 1)',
+        'clr-link': 'rgb(var(--clrLink) / 1)',
+        'clr-cta': 'rgb(var(--clrCta) / 1)',
+        'clr-selection': 'rgb(var(--clrSelection) / 1)',
+        'clr-hover': 'rgb(var(--clrHover) / 1)',
+        'clr-overlay': 'rgb(var(--clrOverlay) / 1)',
       },
       boxShadow: {
         'inside': 'inset 0px 0px 50px 0px rgba(0,0,0,0);',
       },
-      backgroundImage: {
-        'overlay': '-webkit-linear-gradient(top, rgba(4, 8, 20, 0.6), rgba(4, 8, 20, 0.9))',
+      keyframes: {
+        flareAnimation: {
+          '0%': { left: '-150%' },
+          '100%': { left: '150%' },
+        },
+        tickerAnimation: {
+
+        },
       },
-      transitionProperty: {
-        'max-wh': 'max-width, max-height',
+      animation: {
+        flare: 'flareAnimation 3s infinite linear',
+        ticker: 'tickerAnimation 3s infinite linear',
       },
-      lineHeight: {
-        '5.5': '1.375rem', // 22px
-        '6.5': '1.625rem', // 26px
-        '8': '2rem', // 32px
-        '11': '2.75rem', // 44px
-        '14.5': '3.625rem', // 58px
-        '19.25': '4.8125rem', // 77px
-      },
-      spacing: {
-        'container': 'var(--padding-x)',
-      },
-      borderRadius: {
-        '2.5': '0.625rem', // 10px
-        '4': '1rem', // 16px
-        '10': '2.5rem', // 40px
-        '25': '6.25rem', // 100px
-        '50': '12.5rem', // 200px
-        '75': '18.75rem', // 300px
-      },
-      borderWidth: {
-        '5': '1.25rem', // 20px
-      },
-      maxWidth: {
-        '100': '25rem', // 400px
-      }
+      backgroundImage: theme => ({
+        'offer': "url('../img/offer.webp')",
+        'counter': "url('../img/counter.webp')",
+      }),
+      typography: theme => ({
+        DEFAULT: {
+					css: {
+            'h1, h2, h3, h4': {
+              fontFamily: theme('fontFamily.nunito'),
+              fontWeight: theme('fontWeight.semibold'),
+              color: theme('colors.clr-heading'),
+            },
+            h1: {
+              marginBottom: theme('spacing.5'),
+              '@screen xs': {
+                fontSize: rem(58),
+              },
+              '@screen md': {
+                fontSize: rem(64),
+              },
+              '@screen lg': {
+                fontSize: rem(72),
+              },
+              '@screen xl': {
+                fontSize: rem(80),
+              },
+              '@screen 2xl': {
+                fontSize: rem(96),
+              },
+            },
+            h2: {
+              marginBottom: theme('spacing.8'),
+              '@screen xs': {
+                fontSize: rem(48),
+              },
+            },
+            h3: {
+              marginBottom: theme('spacing.3'),
+              '@screen xs': {
+                fontSize: rem(30),
+              },
+            },
+            h4: {
+              marginBottom: theme('spacing.2'),
+              '@screen xs': {
+                fontSize: rem(24),
+              },
+            },
+            span: {
+              fontFamily: theme('fontFamily.nunito'), 
+              fontWeight: theme('fontWeight.normal'),
+              fontSize: rem(16),
+              lineHeight: theme('lineHeight.normal'),
+              color: theme('colors.gray[500]'),
+              marginBottom: theme('spacing.6'),
+            },
+            p: {
+              fontFamily: theme('fontFamily.nunito'), 
+              fontWeight: theme('fontWeight.light'),
+              fontSize: rem(20),
+              lineHeight: theme('lineHeight.normal'),
+              color: theme('colors.clr-text'),
+              marginBottom: theme('spacing.4'),
+            },
+            a: {
+              fontFamily: theme('fontFamily.nunito'), 
+              fontWeight: theme('fontWeight.bold'),
+              fontSize: rem(16),
+              color: theme('colors.clr-link'),
+              textDecoration: 'none',
+              transition: 'all .3s ease-in-out',
+              '&:hover': {
+                color: theme('colors.clr-cta'),
+              },
+              '&.btn': {
+                fontFamily: theme('fontFamily.nunito'),
+                fontSize: rem(20),
+                color: theme('colors.white'),
+                backgroundColor: theme('colors.clr-cta'),
+                borderRadius: theme('borderRadius.md'),
+                paddingTop: theme('spacing.2'),
+                paddingBottom: theme('spacing.2'),
+                paddingLeft: theme('spacing.6'),
+                paddingRight: theme('spacing.6'),
+                marginLeft: theme('spacing.4'),
+                marginRight: theme('spacing.4'),
+                transitionProperty: theme('transitionProperty.all'),
+                transitionDuration: theme('transitionDuration.300'),
+                transitionTimingFunction: theme('transitionTimingFunction.ease-in'),
+                textTransform: 'uppercase',
+                '&--flare': {
+                  display: 'inline-flex',
+                  position: 'relative',
+                  overflow: 'hidden', 
+                  '&:before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: '0',
+                    height: '100%',
+                    width: '45px',
+                    transform: 'skewX(-45deg)',
+                    left: '-150%',
+                    background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.4))',
+                    animation: theme('animation.flare'),
+                  },
+                },
+                '&:hover': {
+                  scale: '1.05',
+                },
+              }
+            },
+            hr: {
+              borderColor: theme('colors.clr-cta / 80'),
+              borderTopWidth: 2,
+              marginTop: theme('spacing.3'),
+              marginBottom: theme('spacing.3'),
+            },
+            blockquote: {
+              border: 0,
+              'p': {
+                fontFamily: theme('fontFamily.nunito'), 
+                fontWeight: theme('fontWeight.semibold'),
+                fontStyle: 'normal',
+                // fontSize: em(16, 16),
+                color: theme('colors.clr-heading'),
+              },
+              'img': {
+                display: 'inline-block',
+                width: rem(80),
+                height: rem(80),
+                borderRadius: '100%',
+                marginBottom: rem(20),
+              }
+            },
+            '.cta': {
+              fontSize: 'inherit',
+              fontFamily: 'inherit',
+              color: theme('colors.white'),
+              backgroundColor: theme('colors.clr-cta'),
+              paddingTop:  theme('spacing.1'),
+              paddingBottom: theme('spacing.1'),
+              paddingLeft: theme('spacing.2'),
+              paddingRight: theme('spacing.2'),
+              borderRadius: theme('borderRadius.md'),
+            },
+          },
+				},
+			})
     },
   },
   corePlugins: {
     container: false
   },
   plugins: [
-    plugin(function ({ addVariant, addComponents }) {
+    plugin(function ({ addVariant, addComponents, theme }) {   
       addVariant('carousel-inited', '&.carousel--inited');
       addVariant('slide-active', '&.carousel-slide-active');
       addVariant('slide-next', '&.carousel-slide-next');
@@ -77,23 +238,51 @@ module.exports = {
           maxWidth: '100%',
           padding: '0 var(--padding-x)',
           '@screen sm': {
-            '--padding-x': 'calc(50vw - 300px)',
-          },
-          '@screen md': {
-            '--padding-x': 'calc(50vw - 360px)',
+            '--padding-x': 'calc(50vw - calc(50vw - 3.125%))',
           },
           '@screen lg': {
-            '--padding-x': 'calc(50vw - 480px)',
+            '--padding-x': 'calc(50vw - calc(50vw - 6.25%))',
           },
-          '@screen xl': {
-            '--padding-x': 'calc(50vw - 600px)',
-          },
-          '@screen 2xl': {
-            '--padding-x': 'calc(50vw - 780px)',
-          },
-        }
+        },
+        '.btn': {
+          fontFamily: theme('fontFamily.nunito'),
+          fontWeight: theme('fontWeight.semibold'),
+          fontSize: rem(16),
+          color: theme('colors.white'),
+          backgroundColor: theme('colors.clr-cta'),
+          borderRadius: theme('borderRadius.md'),
+          paddingTop: theme('spacing.2'),
+          paddingBottom: theme('spacing.2'),
+          paddingLeft: theme('spacing.6'),
+          paddingRight: theme('spacing.6'),
+          marginLeft: theme('spacing.4'),
+          marginRight: theme('spacing.4'),
+          transitionProperty: theme('transitionProperty.all'),
+          transitionDuration: theme('transitionDuration.300'),
+          transitionTimingFunction: theme('transitionTimingFunction.ease-in'),
+          borderWidth: '1px',
+          borderStyle: 'solid',
+          borderColor: 'transparent', 
+          '&:hover': {
+            backgroundColor: theme('colors.white'),
+            borderColor: theme('colors.clr-cta'),
+            color: theme('colors.clr-cta'), 
+          }
+        },
+        '.cta': {
+          fontSize: 'inherit',
+          fontFamily: 'inherit',
+          color: theme('colors.white'),
+          backgroundColor: theme('colors.clr-cta'),
+          paddingTop:  theme('spacing.1'),
+          paddingBottom: theme('spacing.1'),
+          paddingLeft: theme('spacing.2'),
+          paddingRight: theme('spacing.2'),
+          borderRadius: theme('borderRadius.md'),
+        },
       })
     }),
     require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
   ],
 }

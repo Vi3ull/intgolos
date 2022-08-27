@@ -1,9 +1,9 @@
 // Swiper
-import { Autoplay, Pagination, Navigation, EffectCreative } from "swiper";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
 const options = {
   modules: [Autoplay, Pagination, Navigation],
-  loop: true,
+  loop: false,
   slidesPerView: "auto",
   speed: 700,
   // autoplay: {
@@ -26,18 +26,26 @@ const options = {
 }; 
 
 // AOS
-import AOS from 'aos';
+// import AOS from 'aos';
 
-AOS.init();
+// AOS.init();
 
 // Alpine
 import Alpine from 'alpinejs';
-import focus from '@alpinejs/focus'
-import dropdown from './dropdown/_';
+import focus from '@alpinejs/focus';
+import menu from './alpine/menu';
+import dropdown from './alpine/dropdown';
+import modal from './alpine/modal';
+import handleScroll from './alpine/handleScroll';
+import timer from './alpine/timer';
 
 Alpine.plugin(focus)
+Alpine.data('menu', menu)
 Alpine.data('dropdown', dropdown)
+Alpine.data('modal', modal)
 Alpine.data('scrollLock', scrollLock)
+Alpine.data('handleScroll', handleScroll)
+Alpine.data('timer', timer)
 
 window.Alpine = Alpine;
 Alpine.start();
@@ -55,20 +63,6 @@ document.querySelectorAll( '.js-carousel' ).forEach( $el => {
         const initCarousel = module.default;
         initCarousel( $el, {
           ...options, 
-          // slidesPerView: 2,
-          // spaceBetween: 30,
-          // modules: [Autoplay, EffectCreative],
-          // effect: 'creative',
-          // creativeEffect: {
-          //   prev: {
-          //     translate: ["calc(100% + 60px)", 130, 0],
-          //     opacity: 0,
-          //   },
-          //   next: {
-          //     translate: ["calc(100% + 60px)", 130, 0],
-          //     opacity: 1, 
-          //   },
-          // },
         } )
       });
     });

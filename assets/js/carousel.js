@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkintgolos"] = self["webpackChunkintgolos"] || []).push([["/js/carousel"],{
+(self["webpackChunkIntgolos"] = self["webpackChunkIntgolos"] || []).push([["/js/carousel"],{
 
 /***/ "./src/components/carousel/_.js":
 /*!**************************************!*\

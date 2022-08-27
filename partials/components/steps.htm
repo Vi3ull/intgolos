@@ -1,54 +1,52 @@
+==
+<?php
+function onStart() {
+  $description = '<h2><span class="cta">3</span> шага для участия</h2>';
+
+  $this->page['description'] = $description;
+
+  $items = [
+    // 0 => [
+    //   'icon' => 'register',
+    //   'description' => '<h4>Зарегистрируйтесь</h4><p>Создайте свой профиль для участника</p>',
+    // ],
+    1 => [
+      'icon' => 'cam',
+      'description' => '<h4>Снимите ваше певческое творчество</h4><p>К участию принимаются короткие видео ролики, снятые любыми средствами видеосъемки</p>',
+    ],
+    2 => [
+      'icon' => 'money',
+      'description' => '<h4>Внесите вступительные средства(300 ₽)</h4><p>Внесенные средства участвуют в формировании призового фонда и рекламного бюджета для продвижения ваших творческих продуктов</p>',
+    ],
+    3 => [
+      'icon' => 'download',
+      'description' => '<h4>Загрузите видео на платформу</h4><p>После оплаты вам станет доступна форма, в которой потребуется добавить видео и другую, необходимую для конкурса, информацию</p>',
+    ],
+  ];
+
+  $this->page['items'] = $items;
+}
+?>
+==
+
 <section class="py-24">
   <div class="container">
-    <div class="text-sky text-5xl font-sans font-semibold mb-8">
-      <span class="relative text-white bg-sky rounded-md py-1 px-2">3</span> шага для участия
+    <div class="prose max-w-none mb-8">
+      {{ this.page.description | raw }}
     </div>
-    <ul class="relative grid grid-cols-3 py-8 before:absolute before:w-full before:h-2 before:bg-sky before:top-1/2 before:-translate-y-1/2 before:z-10">
-      <li class="p-4 z-20">
-        <div class="flex items-center w-full h-full rounded-md border-2 border-dashed border-sky p-4 bg-white">
-          <div class="rounded-full bg-white border-2 border-sky p-3 mr-4">
-            {% partial 'common/icon' class="w-14 h-14 fill-white stroke-sky" icon="cam" %}
+    <ul class="flex flex-wrap items-stretch py-8 ">
+      {% for item in this.page.items %}
+      <li class="relative basis-1/3 flex-grow flex-shrink-0 p-4 z-20 before:absolute before:w-full before:h-2 before:bg-clr-cta before:top-1/2 before:-translate-y-1/2 before:-translate-x-4 before:-z-10 before:border-x-4 before:border-white">
+        <div class="flex flex-col xs:flex-row items-center w-full h-full rounded-md border-2 border-dashed border-clr-cta p-4 bg-white">
+          <div class="rounded-full bg-white border-2 border-clr-cta p-3 mb-4 mr-4">
+            {% partial 'common/icon' class="w-14 h-14 fill-white stroke-clr-cta" icon=item.icon %}
           </div>
-          <div>
-            <div class="text-2xl text-sky font-sans font-medium uppercase mb-2">
-              Снимите ваше певческое творчество
-            </div>
-            <div class="text-lg text-black font-sans font-light">
-              К участию принимаются короткие видео ролики, снятые любыми средствами видеосъемки
-            </div>
+          <div class="prose max-w-none h-full prose-headings:uppercase prose-headings:mb-2 prose-headings:font-medium prose-p:text-lg">
+            {{ item.description | raw }}
           </div>
         </div>
       </li>
-      <li class="p-4 z-20">
-        <div class="flex items-center w-full h-full rounded-md border-2 border-dashed border-sky p-4 bg-white">
-          <div class="rounded-full bg-white border-2 border-sky p-3 mr-4">
-            {% partial 'common/icon' class="w-14 h-14 fill-white stroke-sky" icon="money" %}
-          </div>
-          <div>
-            <div class="text-2xl text-sky font-sans font-medium uppercase mb-2">
-              Внесите вступительные средства(300 ₽)
-            </div>
-            <div class="text-lg text-black font-sans font-light">
-              Внесенные средства участвуют в формировании призового фонда и рекламного бюджета для продвижения ваших творческих продуктов
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="p-4 z-20">
-        <div class="flex items-center w-full h-full rounded-md border-2 border-dashed border-sky p-4 bg-white">
-          <div class="rounded-full bg-white border-2 border-sky p-3 mr-4">
-            {% partial 'common/icon' class="w-14 h-14 fill-white stroke-sky" icon="download" %}
-          </div>
-          <div>
-            <div class="text-2xl text-sky font-sans font-medium uppercase mb-2">
-              Загрузите видео на платформу
-            </div>
-            <div class="text-lg text-black font-sans font-light">
-              После оплаты вам станет доступна форма, в которой потребуется добавить видео и другую, необходимую для конкурса, информацию
-            </div>
-          </div>
-        </div>
-      </li>
+      {% endfor %}
     </ul>
   </div>
 </section>

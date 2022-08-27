@@ -1,7 +1,7 @@
 {% for block in components %}
 
-  {% if block._group == "hero" %}
-    {% partial "components/hero" data=block %}
+  {% if block._group == "intro" %}
+    {% partial "components/intro" data=block %}
   {% endif %}
 
   {% if block._group == "why_us" %}

@@ -2,6 +2,9 @@ const glob = require('glob');
 const path = require('path');;
 const mix = require('laravel-mix')
 
+const publicFolderName = 'assets';
+const themeFolderName = 'intgolos'
+
 const jsArr = glob
 .sync( 'src/components/*.js' )
 .filter( file => path.basename( file ).substr(0, 1) !== '_' );
@@ -21,11 +24,11 @@ mix.alias({
     '@c': path.join(__dirname, './src/components')
 })
 
-mix.copy('./src/img', 'assets/img')
+mix.copy('./src/img', `${publicFolderName}/img`)
 
 mix.webpackConfig({
     output: {
-        publicPath: '/themes/intgolos/assets',
+        publicPath: `/themes/${themeFolderName}/assets`,
     },
     resolve: {
         modules: [
@@ -38,7 +41,11 @@ jsArr.forEach( item => mix.js( item, 'js') );
 cssArr.forEach( item => mix.sass( item, 'css') );
 
 mix.options({
+    processCssUrls: true,
     clearConsole: true,
+    fileLoaderDirs: {
+        images: 'img',
+    },
     postCss: [ 
         require('tailwindcss')('./tailwind.config.js'),
         require('autoprefixer')({
@@ -47,8 +54,8 @@ mix.options({
     ],
 });
 
-mix.setPublicPath('assets')
-mix.setResourceRoot('/themes/' + process.env.ACTIVE_THEME + '/assets')
+mix.setPublicPath(publicFolderName)
+mix.setResourceRoot(`/themes/${themeFolderName}/assets`)
 
 mix.disableNotifications()
 

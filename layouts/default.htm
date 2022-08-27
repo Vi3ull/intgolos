@@ -16,11 +16,10 @@ default = 0
   {% partial 'common/head' %}
 </head>
   <body 
-    class="flex flex-col min-h-screen bg-fore-ground"
-    {#x-data="scrollLock"#}
+    class="flex flex-col min-h-screen bg-clr-body selection:bg-clr-selection"
   >
     {{ this.theme.include_body_begin }}
-    {% partial 'common/header' %}
+    {# partial 'common/header' #}
 
     {% if this.page.id != 'home' %}
       {% partial 'common/breadcrumbs' %}
@@ -43,7 +42,7 @@ default = 0
       {% endif %}
     </div>
     
-    {# {% partial 'common/footer' %} #}
+    {% partial 'common/footer' %}
     
     {% partial 'common/scripts' %}
     {{ this.theme.include_body_end }}
