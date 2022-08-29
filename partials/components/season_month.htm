@@ -1,0 +1,64 @@
+==
+<?php
+function onStart() {
+  $description = '
+    <h3>Победители месяца</h3>
+    <p>Каждый участник не может стать победителем месяца более двух раз. Участники не набравшие 10 баллов в течении месяца будут скрыты в архив. Разблокировка из архива доступна по запросу</p>
+  ';
+
+  $this->page['description'] = $description;
+
+  $months = array('Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
+
+  $this->page['months'] = $months;
+}
+?>
+==
+<section class="py-12">
+  <div class="container">
+    <div class="prose text-end ml-auto mr-0">
+      {{ this.page.description | raw }}
+    </div>
+    <ul class="flex flex-wrap -mx-4 mt-10">
+      {% for item in this.page.months %}
+      <li class="basis-full md:basis-1/2 flex-grow px-4 mb-4">
+        <details class="group bg-gray-50 rounded-md marker-none shadow-sm shadow-gray-300">
+          <summary class="shadow-sm shadow-gray-300 flex items-center justify-between px-4 py-2 rounded-md group-open:bg-white transition-all duration-100 ease-in">
+           <div class="relative flex flex-grow-0 items-center before:transition-all before:duration-50 before:ease-in before:absolute before:block before:left-0 before:bottom-0 before:w-0 before:h-0.5 before:bg-clr-cta before:z-10 group-open:before:w-full pr-2">
+            <span class="font-nunito font-medium text-xl">{{ item }}</span>
+           </div>
+           {% partial 'common/icon' class="w-8 h-8 fill-transparent stroke-clr-cta stroke-1 transition-transform duration-200 ease-in rotate-180 group-open:rotate-0 rounded-full border border-clr-cta p-1" icon="chevron" %}
+          </summary>
+          <ul class="p-8">
+            {% for item in range(1, 5) %}
+            <li class="flex flex-col">
+              <span class="relative font-nunito font-semibold text-clr-cta text-base before:absolute before:left-0 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:w-4 before:h-4 before:rounded-full before:border-2 before:border-clr-cta group-last:before:bg-transparent pl-4">
+                Категория от 7 до 14 лет
+              </span>
+              <div class="relative flex items-center {{ loop.last ? '' : 'before:absolute before:left-0 before:top-0 before:-translate-x-1/2 before:w-0.5 before:h-full before:bg-clr-cta' }} px-4 pt-4 pb-6">
+                <div class="relative">
+                  <picture>
+                    <img src="https://via.placeholder.com/80x80" alt="" class="relative w-20 h-20 flex-shrink-0 rounded-full z-10 drop-shadow-md">
+                  </picture>
+                </div>
+                <div class="flex-grow bg-white rounded-md -translate-x-10 drop-shadow-md py-4 pl-14 pr-4">
+                  <div class="flex items-center justify-between">
+                    <a href="#" class="font-nunito font-normal text-lg transition-all duration-200 ease-in hover:text-clr-cta focus:text-clr-cta">
+                      ANASTASIYA
+                    </a> 
+                    <div class="flex border-b-2 border-clr-cta">
+                      {% partial 'common/icon' class="w-6 h-6 fill-transparent stroke-2 stroke-clr-cta mr-2" icon="like" %}
+                      <span class="font-nunito font-bold text-gray-600 text-base leading-loose">890</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </details>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

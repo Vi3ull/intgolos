@@ -14,16 +14,24 @@ function onStart() {
       'age' =>  '23',
       'city' => 'Москва',
       'points' => '3658',
-      'prize' => 'ПРИЗ: ЗАПИСЬ ПЕСНИ В СТУДИИ',
-      'video' => 'https://via.placeholder.com/500x335'
+      'prize' => 'Запись песни в студии',
+      'video' => 'https://dummyimage.com/500x335/aaa/fff'
     ],
     1 => [
       'name' => "Нифонтов Александр",
       'age' =>  '23',
       'city' => 'Москва',
       'points' => '3658',
-      'prize' => 'ПРИЗ: ЗАПИСЬ ПЕСНИ В СТУДИИ',
-      'video' => 'https://via.placeholder.com/500x335'
+      'prize' => 'Запись песни в студии',
+      'video' => 'https://dummyimage.com/500x335/aaa/fff'
+    ],
+    2 => [
+      'name' => "Нифонтов Александр",
+      'age' =>  '23',
+      'city' => 'Москва',
+      'points' => '3658',
+      'prize' => 'Запись песни в студии',
+      'video' => 'https://dummyimage.com/500x335/aaa/fff'
     ]
   ];
 
@@ -31,28 +39,44 @@ function onStart() {
 }
 ?>
 ==
-<section class="py-24">
+<section class="py-12">
   <div class="container">
     <div class="prose max-w-none text-center">
       {{ this.page.description | raw }}
     </div>
-    <ul class="flex flex-col my-10">
+    <div class="carousel-reports carousel js-carousel scrollbar my-12">
+      <ul class="carousel__wrapper js-carousel-wrapper">
       {% for item in this.page.items %}
-      <li class="basis-full md:basis-8/12 flex-grow-0 rounded-md p-4 odd:self-start even:self-end">
-        <div class="basis-4/12 prose max-w-none bg-white p-4 rounded-tl-md rounded-bl-md {{ loop.index is even ? 'order-last rounded-tl-none rounded-bl-none rounded-tr-md rounded-br-md' : '' }}">
-          <h4>{{ item.name }}</h4>
-          {{ item.age }}
-          {{ item.city }}
-          {{ item.points }}
-          {{ item.prize }}
-        </div>
-        <div class="relative basis-8/12 before:w-full before:pb-video before:animate-pulse before:bg-gray-300 before:rounded-md rounded-md shadow-md shadow-gray-500">
-          <picture>
-            <img src="{{ item.video }}" alt="" class="absolute inset-0 w-full h-full rounded-md">
-          </picture>
-        </div>
-      </li>
+          <li class="carousel__slide carousel__slide--aspect--square js-carousel-slide px-2">
+            <div class="grid grid-cols-12 items-center">
+              <div class="col-span-4 h-4/5 bg-white p-4 rounded-tl-md rounded-bl-md shadow-md shadow-gray-300 overflow-auto">
+                <div class="font-nunito font-semibold text-lg text-gray-500 leading-snug mb-1">
+                  {{ item.name }}
+                </div>
+                <div class="font-nunito font-normal text-base text-clr-text leading-tight mb-3">
+                  <p>Возраст: {{ item.age }}, г. {{ item.city }}</p>
+                </div>
+                <div class="flex font-nunito font-medium text-base text-zinc-700 mb-2">
+                  {% partial 'common/icon' class="w-6 h-6 fill-clr-cta stroke-white mr-2" icon="star" %}
+                  <span>{{ item.points }}</span>
+                </div>
+                <div class="flex font-nunito font-medium text-base text-zinc-700">
+                  {% partial 'common/icon' class="w-7 h-6 fill-clr-cta stroke-white mr-2" icon="gift" %}
+                  <span>{{ item.prize }}</span>
+                </div>
+              </div>
+              <div class="group relative col-span-8 flex before:w-full before:pb-video before:animate-pulse before:bg-gray-300 before:rounded-md rounded-md drop-shadow-md">
+                <picture>
+                  <img src="{{ item.video }}" alt="" class="absolute inset-0 w-full h-full rounded-md">
+                </picture>
+                <a href="#" class="absolute inset-0 flex items-center justify-center rounded-md transition-colors duration-200 ease-in group-hover:bg-clr-overlay/60 z-10">
+                  {% partial 'common/icon' class="w-14 h-14 fill-transparent stroke-clr-cta stroke-1 opacity-0 transition-opacity duration-200 ease-in group-hover:opacity-80" icon="zoom" %}
+                </a>
+              </div>
+            </div>
+          </li>
       {% endfor %}
-    </ul>
+      </ul>
+    </div>
   </div>
 </section>

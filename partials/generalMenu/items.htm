@@ -1,5 +1,5 @@
 {% for item in items if not item.viewBag.isHidden %}
-    <li class="flex flex-col {{ item.url ? 'lg:hover:bg-light' : '' }} {{ item.isActive ? 'lg:bg-light' : '' }}"
+    <li class="flex flex-col flex-shrink-0 {{ item.url ? 'lg:hover:bg-light' : '' }} {{ item.isActive ? 'lg:bg-light' : '' }}"
         {{ item.items ? 'x-data="dropdown"' : '' }}
     >                                
         {% if item.items %} 

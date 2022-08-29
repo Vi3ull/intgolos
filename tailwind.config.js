@@ -1,5 +1,7 @@
 let plugin = require('tailwindcss/plugin')
 
+// import { rem, em, lh } from './src/tw-components/!common/functions';
+
 const round = (num) =>
   num
     .toFixed(7)
@@ -11,8 +13,6 @@ const lh = (fontSize, lineHeight) => `${round(lineHeight / fontSize)}`
 // const paddingX = (screenSize, px) => {
 //   return `calc(50vw - calc(50vw - ${(((px * 100) / (screenSize / 2))}))`;
 // }
-// import { rem, em, lh } from './src/tw-components/!common/functions';
-
 
 module.exports = {
   content: [
@@ -40,11 +40,17 @@ module.exports = {
         'container': 'var(--padding-x)',
         'video': '56.25%',
       },
+      padding: {
+        '1/2': '50%',
+      },
       maxWidth: {
         '1/3': '33.333%',
       },
       minHeight: {
-        'offer': rem(600),
+        '16': rem(64),
+        '18': rem(72),
+        '100': rem(400),
+        '150': rem(600),
       },
       colors: {
         'clr-header': 'rgb(var(--clrHeader) / 1)',
@@ -58,9 +64,6 @@ module.exports = {
         'clr-hover': 'rgb(var(--clrHover) / 1)',
         'clr-overlay': 'rgb(var(--clrOverlay) / 1)',
       },
-      boxShadow: {
-        'inside': 'inset 0px 0px 50px 0px rgba(0,0,0,0);',
-      },
       keyframes: {
         flareAnimation: {
           '0%': { left: '-150%' },
@@ -73,6 +76,9 @@ module.exports = {
       animation: {
         flare: 'flareAnimation 3s infinite linear',
         ticker: 'tickerAnimation 3s infinite linear',
+      },
+      boxShadow: {
+        'inside': 'inset 0px 0px 50px 0px rgba(0,0,0,0);',
       },
       backgroundImage: theme => ({
         'offer': "url('../img/offer.webp')",
@@ -105,7 +111,7 @@ module.exports = {
               },
             },
             h2: {
-              marginBottom: theme('spacing.8'),
+              marginBottom: theme('spacing.4'),
               '@screen xs': {
                 fontSize: rem(48),
               },
@@ -133,17 +139,20 @@ module.exports = {
             p: {
               fontFamily: theme('fontFamily.nunito'), 
               fontWeight: theme('fontWeight.light'),
-              fontSize: rem(20),
+              fontSize: rem(18),
               lineHeight: theme('lineHeight.normal'),
               color: theme('colors.clr-text'),
-              marginBottom: theme('spacing.4'),
+              marginTop: theme('spacing.3'),
+              marginBottom: theme('spacing.2'),
             },
             a: {
               fontFamily: theme('fontFamily.nunito'), 
               fontWeight: theme('fontWeight.bold'),
               fontSize: rem(16),
               color: theme('colors.clr-link'),
-              textDecoration: 'none',
+              textDecoration: 'underline',
+              textDecorationColor: theme('colors.clr-cta'),
+              textUnderlineOffset: '4px',
               transition: 'all .3s ease-in-out',
               '&:hover': {
                 color: theme('colors.clr-cta'),
@@ -158,8 +167,8 @@ module.exports = {
                 paddingBottom: theme('spacing.2'),
                 paddingLeft: theme('spacing.6'),
                 paddingRight: theme('spacing.6'),
-                marginLeft: theme('spacing.4'),
-                marginRight: theme('spacing.4'),
+                // marginLeft: theme('spacing.4'),
+                // marginRight: theme('spacing.4'),
                 transitionProperty: theme('transitionProperty.all'),
                 transitionDuration: theme('transitionDuration.300'),
                 transitionTimingFunction: theme('transitionTimingFunction.ease-in'),
@@ -228,7 +237,7 @@ module.exports = {
     container: false
   },
   plugins: [
-    plugin(function ({ addVariant, addComponents, theme }) {   
+    plugin(function ({ addVariant, addComponents, addUtilities, theme }) {   
       addVariant('carousel-inited', '&.carousel--inited');
       addVariant('slide-active', '&.carousel-slide-active');
       addVariant('slide-next', '&.carousel-slide-next');
@@ -243,6 +252,9 @@ module.exports = {
           '@screen lg': {
             '--padding-x': 'calc(50vw - calc(50vw - 6.25%))',
           },
+          '@screen 2xl': {
+            '--padding-x': 'calc(50vw - calc(50vw - 9.375%))',
+          },
         },
         '.btn': {
           fontFamily: theme('fontFamily.nunito'),
@@ -255,8 +267,8 @@ module.exports = {
           paddingBottom: theme('spacing.2'),
           paddingLeft: theme('spacing.6'),
           paddingRight: theme('spacing.6'),
-          marginLeft: theme('spacing.4'),
-          marginRight: theme('spacing.4'),
+          // marginLeft: theme('spacing.4'),
+          // marginRight: theme('spacing.4'),
           transitionProperty: theme('transitionProperty.all'),
           transitionDuration: theme('transitionDuration.300'),
           transitionTimingFunction: theme('transitionTimingFunction.ease-in'),
@@ -280,7 +292,23 @@ module.exports = {
           paddingRight: theme('spacing.2'),
           borderRadius: theme('borderRadius.md'),
         },
-      })
+      });
+      addUtilities({
+        '.marker-none': {
+          '& > summary': {
+            listStyle: 'none',
+          },
+          '& > summary::-webkit-details-marker': {
+            display: 'none',
+          }
+        },
+        '.counter-reset': {
+          counterReset: 'number',
+        },
+        '.counter-increment': {
+          counterIncrement: 'number',
+        },
+      });
     }),
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),

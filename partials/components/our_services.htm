@@ -1,0 +1,87 @@
+==
+<?php
+function onStart() {
+  $description = '
+    <h3>Дополнительные услуги</h3>    
+    <p>Команда платформы предлагает дополнительные услуги в сфере продвижения и записи ваших роликов</p>
+  ';
+
+  $this->page['description'] = $description;
+  
+  $items = [
+    0 => [
+      'title' => 'Охват +',
+      'price' => '500',
+      'description' => '<p>Опубликуем ваш ролик участника на страничках конкурса вконтакте и тик-ток с созданием рекламного объявления и 10 000 показов вашего ролика потенциальной аудитории. (Отчеты предоставляются)</p>',
+    ],
+    1 => [
+      'title' => 'Запись песни',
+      'price' => '1500',
+      'description' => '<p>Найдем подходящую студию, организуем процесс, проконтролируем запись. Поможем с минусовкой и сведением песни. Гарантируем качественный и профессиональный продукт на выходе</p>',
+    ],
+    2 => [
+      'title' => '-20% на загрузку роликов',
+      'price' => '800',
+      'description' => '<p>Загрузите стразу 4 ролика - получите больше шансов на победу и скидку на публикацию. При покупке услуги дополнительно размещаем ролики на страничках конкурса в социальных сетях вконтакте и инстаграм</p>',
+    ],
+    3 => [
+      'title' => 'Сведение треков',
+      'price' => '3000',
+      'description' => '<p>Сведе́ние или микши́рование — стадия создания из отдельных записанных треков конечной записи, следующий после звукозаписи этап создания фонограммы, заключающийся в отборе и редактировании исходных записанных треков, объединении их в единый проект и обработке эффектами.</p>',
+    ],
+    4 => [
+      'title' => 'Мастеринг трека',
+      'price' => '3000',
+      'description' => '<p>Мастеринг - это работа над сведенным треком (одной дорожкой), либо над группами инструментов (stem-mastering). Мастеринг подразумевает выравнивание к желаемому балансу, ширине и оттенку (за основу, как правило, берутся современные треки) и составляет не более 10-15% всего качества.</p>',
+    ],
+    5 => [
+      'title' => 'Дизайн обложки',
+      'price' => '1000',
+      'description' => '<p>Профессиональный дизайн вашей обложки, постера, афиши, кавера. Оформление социальных сетей и персональных страничек</p>',
+    ],
+  ];
+  
+  $this->page['items'] = $items;
+}
+?>
+==
+<section class="py-12">
+  <div class="container">
+    <div class="prose">
+      {{ this.page.description | raw }}
+    </div>
+    <ul class="flex flex-wrap items-stretch my-16 -mx-2">
+      {% for item in this.page.items %}
+        <li class="basis-full sm:basis-1/2 lg:basis-1/3 2xl:basis-1/6 flex-grow-0 p-2">
+          <article 
+            class="relative group flex flex-col overflow-hidden drop-shadow-md"
+          >
+            <div class="relative min-h-18 font-nunito font-semibold text-xl text-clr-cta text-center bg-white px-4 py-2 z-30">
+              {{ item.title }}
+            </div>
+            <div class="relative min-h-100">
+              <picture>
+                <img 
+                  src="{{ item.image ? item.image | media : 'https://dummyimage.com/420x660/aaa/fff' }}"
+                  alt=""
+                  class="absolute inset-0 w-full h-full object-cover group-hover:scale-125 transition-all duration-500 ease-in-out"
+                >
+              </picture>
+            </div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 flex flex-col items-center bg-gradient-to-tr from-clr-overlay/50 to-clr-hover/50 transition-opacity duration-500 ease-in-out">
+              <div class="ml-auto mr-0 mt-3 group-hover:mt-0 p-5 transition-all duration-300 ease-in-out">
+                {% partial 'common/icon' class="w-10 h-10 fill-transparent stroke-white" icon="expand" %}
+              </div>
+              <div class="prose prose-headings:font-poppins prose-headings:text-white prose-headings:text-2xl prose-headings:font-bold prose-headings:mb-2 prose-p:text-white prose-p:text-sm prose-a:text-white prose-a:text-sm prose-a:font-poppins prose-a:font-normal prose-a:uppercase text-center my-auto opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out p-4">
+                {{ item.description | raw }}
+              </div>
+            </div>
+            <a href="#" class="relative block font-nunito font-semibold text-base text-white text-center uppercase bg-clr-cta px-4 py-2 z-30">
+              Заказать
+            </a>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

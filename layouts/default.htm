@@ -3,6 +3,9 @@ description = "Шаблон по умолчанию"
 [staticMenu generalMenu]
 code = "general-menu"
 
+[staticMenu footerMenu]
+code = "general-menu"
+
 [staticBreadcrumbs]
 
 [staticPage]
@@ -16,10 +19,10 @@ default = 0
   {% partial 'common/head' %}
 </head>
   <body 
-    class="flex flex-col min-h-screen bg-clr-body selection:bg-clr-selection"
+    class="flex flex-col min-h-screen bg-clr-body selection:bg-clr-selection selection:text-white"
   >
     {{ this.theme.include_body_begin }}
-    {# partial 'common/header' #}
+    {% partial 'common/header' %}
 
     {% if this.page.id != 'home' %}
       {% partial 'common/breadcrumbs' %}

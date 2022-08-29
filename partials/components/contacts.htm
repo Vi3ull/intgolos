@@ -1,0 +1,31 @@
+==
+<?php
+function onStart() {
+  $description = '
+    <h4>Контакты организаторов</h4>    
+    <hr>
+    <a href="tel:+84959607226">8-495-960-7226</a>
+    <br>
+    <a href="mailto:internetgolos@yandex.ru" target="_blank">
+      internetgolos@yandex.ru
+    </a>
+    <br>
+    105118, г. Москва, шоссе Энтузиастов,
+    <br>
+    д. 34, этаж 1, пом. I, ком. 37, оф. У95
+  ';
+
+  $this->page['description'] = $description;
+}
+?>
+==
+<section class="pt-12">
+  <div class="relative">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2245.2503589111952!2d37.73298531601547!3d55.75415299935517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b535553d1ce19d%3A0x11340e6fb95d35c5!2z0YguINCt0L3RgtGD0LfQuNCw0YHRgtC-0LIsIDM0LCDQnNC-0YHQutCy0LAsIDEwNTExOA!5e0!3m2!1sru!2sru!4v1661730071487!5m2!1sru!2sru" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="md:absolute inset-0 container">
+      <div class="prose max-w-none md:w-1/3 xl:w-1/4 h-full bg-white px-6 py-10 md:border-x-2 md:border-clr-cta">
+        {{ this.page.description | raw }}
+      </div>
+    </div>
+  </div>
+</section>
