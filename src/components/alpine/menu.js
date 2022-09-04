@@ -8,10 +8,10 @@ export default () => ({
     }
 
     this.isOpen = true
-    this.lastScrollTopPosition = window.scrollY;
+    // this.lastScrollTopPosition = window.scrollY;
 
-    document.body.style.height = "100vh";
-    document.body.style.overflowY = "hidden";
+    // document.body.style.height = "100vh";
+    // document.body.style.overflowY = "hidden";
   },
 
   onCloseMenu() {
@@ -19,9 +19,9 @@ export default () => ({
 
     this.isOpen = false
 
-    document.body.style.height = "auto";
-    document.body.style.overflowY = "visible";
-    window.scrollTo(0, this.lastScrollTopPosition);
+    // document.body.style.height = "auto";
+    // document.body.style.overflowY = "visible";
+    // window.scrollTo(0, this.lastScrollTopPosition);
   },
 
   btnOpen: {
@@ -38,7 +38,7 @@ export default () => ({
 
   menuWrapper: {
     [':class']() {
-      return this.isOpen ? 'open' : '';
+      return this.isOpen ? 'menu-open' : '';
     },
     ['@resize.window.throttle']() {
       if (window.innerWidth > 1536) {

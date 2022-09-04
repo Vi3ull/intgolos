@@ -1,0 +1,54 @@
+title = "Регистрация"
+url = "/registration"
+layout = "default"
+==
+<div>
+  {{ form_open({ 
+      request: 'Registration::onAjax', 
+      url: 'registration'|page, 
+      class: 'flex flex-col items-center' 
+    }) 
+  }}
+    {% 
+      partial 'components/form/form_group' 
+      type="text"
+      id="name-" ~ blockId
+      placeholder="Имя"
+      name="name" ~ blockId
+      value=arForm.name
+      label="Имя"
+    %}
+
+    {% 
+      partial 'components/form/form_group' 
+      type="email"
+      id="email-" ~ blockId
+      placeholder="Email"
+      name="email"
+      value=arForm.email
+      label="Email"
+    %}
+
+    {% 
+      partial 'components/form/form_group' 
+      type="password"
+      id="password-" ~ blockId
+      placeholder="Пароль"
+      name="password"
+      label="Пароль"
+    %}
+
+    {% 
+      partial 'components/form/form_group' 
+      type="password"
+      id="password_confirmation-" ~ blockId
+      placeholder="Повторите пароль"
+      name="password_confirmation"
+      label="Повторите пароль"
+    %}
+    <button type="submit" class="btn mt-2 mb-4">Зарегистрироваться</button>
+{{ form_close() }}
+{% if arError.message is not empty %}
+    <p>{{ arError.message }}</p>
+{% endif %}
+</div>

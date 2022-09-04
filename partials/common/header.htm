@@ -1,26 +1,45 @@
-<header class="sticky top-0 bg-white py-2 z-50 rounded-b-md shadow-md shadow-gray-300">
-  <div class="container flex items-center justify-between">
-    <div class="text-2xl text-clr-cta font-nunito font-bold uppercase mr-8">
+<header class="sticky top-0 bg-clr-header z-50 rounded-b-md shadow-md shadow-gray-300">
+  <div class="relative container flex flex-wrap items-center justify-between py-2 xl:py-0">
+    <div class="text-2xl text-clr-cta font-nunito font-bold uppercase">
       <a href="/">
         Интголос
       </a>
-    </div>
-    <nav>
-      {% component 'generalMenu' %}
-    </nav>
-    <div class="flex items-center">
+    </div>    
+    <div 
+      class="flex items-center"
+      x-data="menu"
+    >
+      <div 
+        class="fixed xl:static top-16 bottom-16 right-0 translate-x-full xl:translate-x-0 menu-open:translate-x-0 transition-all duration-400"
+        x-bind="menuWrapper"
+      > 
+        <div class="xl:flex xl:items-center xl:justify-between bg-clr-header rounded-l-md shadow-xl xl:shadow-none shadow-clr-cta/50 p-4 xl:p-0 mb-8 xl:mb-0">
+          <nav>
+            {% component 'generalMenu' %}
+          </nav>
+          <div class="flex items-center ml-auto mt-8 xl:mt-0 xl:ml-24">
+            <a 
+              href="https://vk.com/intgolos"
+              class="w-10 h-10 text-white text-base font-nunito font-bold bg-white border-2 border-clr-cta rounded-md mr-4"
+            >
+              {% partial 'common/icon' class="w-full h-full stroke-transparent text-white bg-clr-cta p-2" icon="vk" %}
+            </a
+            >
+            <a 
+              href="https://intgolos.ru/pay"
+              class="btn max-h-10"
+            >
+              Участвовать
+            </a>
+          </div>
+        </div>
+      </div>
       <a 
-        href="https://vk.com/intgolos"
-        class="text-white text-base font-nunito font-bold bg-clr-cta rounded-md mx-4"
+        href="/page-list" 
+        class="block xl:hidden w-10 h-10 border-2 border-gray-300 rounded-md ml-4"
+        x-bind="btnOpen"
       >
-        {% partial 'common/icon' class="w-10 h-10 rounded-full text-clr-cta bg-white stroke-0 border-2 border-white" icon="vk" %}
-      </a
-      >
-      <a 
-        href="https://intgolos.ru/pay"
-        class="btn"
-      >
-        Участвовать
+        {% partial 'common/icon' class="w-full h-full text-gray-300 stroke-gray-600 p-1" icon="menu" %}
       </a>
     </div>
   </div>

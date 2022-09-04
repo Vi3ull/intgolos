@@ -46,6 +46,9 @@ module.exports = {
       maxWidth: {
         '1/3': '33.333%',
       },
+      maxHeight: {
+        '3/4': '75%',
+      },
       minHeight: {
         '16': rem(64),
         '18': rem(72),
@@ -79,6 +82,7 @@ module.exports = {
       },
       boxShadow: {
         'inside': 'inset 0px 0px 50px 0px rgba(0,0,0,0);',
+        'autofill': '0 0 0px 1000px #ffffff inset',
       },
       backgroundImage: theme => ({
         'offer': "url('../img/offer.webp')",
@@ -242,6 +246,7 @@ module.exports = {
       addVariant('slide-active', '&.carousel-slide-active');
       addVariant('slide-next', '&.carousel-slide-next');
       addVariant('slide-prev', '&.carousel-slide-prev');  
+      addVariant('menu-open', '&.menu-open');  
       addComponents({
         '.container': {
           maxWidth: '100%',
@@ -310,7 +315,7 @@ module.exports = {
         },
       });
     }),
-    require('@tailwindcss/forms'),
+    // require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
   ],
 }

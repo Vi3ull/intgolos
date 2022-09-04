@@ -2,7 +2,8 @@
   <a 
     href="{{ item.code ? item.code : item.url }}" 
     class="
-      flex items-center justify-between font-nunito font-normal text-base text-gray-600 uppercase px-4 hover:opacity-70 transition-colors duration-300
+      relative flex items-center justify-between font-nunito font-normal text-base text-gray-600 uppercase hover:opacity-70 transition-colors duration-300 py-2 lg:p-4
+      before:absolute before:left-0 before:bottom-0 before:w-0 before:hover:w-full before:h-1 before:bg-clr-cta before:transition-all before:duration-150 before:ease-in
       {{ item.isActive ? ' !text-active' : '' }}
     "
     {{ item.items ? 'x-bind="trigger"' : '' }}
@@ -10,9 +11,11 @@
     {{ item.viewBag.isExternal ? 'target="_blank"' }}
   >
     <span>{{ item.title }}</span>
+    {#
     {% if item.items %}
       {% partial 'common/icon' class="fill-transparent stroke-current stroke-2 w-6 h-6 rotate-90 lg:rotate-180 lg:w-5 lg:h-5 lg:ml-2" icon="chevron" %}
     {% endif %}
+    #}
   </a>
 {% else %}
   <span 

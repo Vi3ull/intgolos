@@ -25,7 +25,7 @@ function onStart() {
     <img class="absolute inset-0 w-full h-full object-cover" src="{{ 'assets/img/intro.webp' | theme }}" alt="">
   </picture>
   <div class="relative container flex flex-wrap z-40">
-    <div class="basis-full lg:basis-1/2 prose max-w-none prose-p:text-white prose-p:text-lg prose-p:font-light prose-strong:text-white text-center lg:text-start py-11 xl:pr-20">
+    <div class="basis-full prose mx-auto prose-p:text-white prose-p:text-lg prose-p:font-light prose-strong:text-white text-center py-11 xl:pr-20">
       <p><strong>Онлайн-конкурс песни</strong></p>
       <h1>
         ИНТГОЛОС
@@ -36,11 +36,11 @@ function onStart() {
         Подключайтесь к "INTGOLOS" и ваше творчество увидят и улышат. По итогам полугодия (отсчет с 1 июля 2022г.), но за один лучший месяц, будут определены три победителя в каждой возрастной группе. Среди "Золотой пятнашки" будет распределен главный денежный приз.
       </p>
     </div>
-    <div class="basis-full lg:basis-1/2 flex flex-wrap items-stretch py-11">
+    <div class="basis-full flex flex-wrap items-stretch py-11">
       {% for item in this.page.items %}
-      <div class="basis-full md:basis-1/2 lg:basis-full 2xl:basis-1/2 p-4">
-        <div class="h-full bg-white rounded-md p-4">
-          <div class="prose prose-headings:text-gray-700 prose-headings:uppercase max-w-none prose-p:text-gray-700 text-center mt-2 mb-4">
+      <div class="basis-full xs:basis-1/2 lg:basis-1/4">
+        <div class="h-full p-4">
+          <div class="prose prose-headings:text-clr-cta prose-headings:uppercase max-w-none prose-p:text-white text-center mt-2 mb-4">
             {{ item.description | raw }}
           </div>
         </div>

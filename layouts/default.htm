@@ -9,9 +9,44 @@ code = "general-menu"
 [staticBreadcrumbs]
 
 [staticPage]
-useContent = 1
+useContent = 0
 default = 0
+
+[Registration]
+mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "registration_success"
+activation = "activation_on"
+force_login = 1
 ==
+<?php
+  function onEnd() {
+    $this['hasBreadcrumbs'] = true;
+  }
+?>
+==
+{variable 
+  name="hasBreadcrumbs"
+  tab="Контент страницы"
+  label="Скрыть хлебные крошки"
+  type="switch"
+  default=1
+  span="right"
+}
+{/variable}
+{variable 
+  name="pageContent" 
+  tab="Контент страницы"
+  label="Контент страницы"
+  type="repeater"
+  prompt="Добавить блок"
+  style="collapsed"
+  span="full"
+  groups="~/themes/intgolos/partials/components/config.yaml"
+}
+{/variable}
+
 {% spaceless %}
 <!DOCTYPE html>
 <html lang="ru">
@@ -24,25 +59,15 @@ default = 0
     {{ this.theme.include_body_begin }}
     {% partial 'common/header' %}
 
-    {% if this.page.id != 'home' %}
+    {% if hasBreadcrumbs %}
       {% partial 'common/breadcrumbs' %}
     {% endif %}
     
-    <div>
+    <div class="flex-grow">
       <main>
         {% page %}
+        {% partial "components/_" components=pageContent %}
       </main>    
-      
-      {% if isHasSidebar %}
-      <aside>
-          <div>
-            <div>
-              Подстраницы
-            </div>
-            {% component "childPages" %}
-          </div>
-      </aside>
-      {% endif %}
     </div>
     
     {% partial 'common/footer' %}
