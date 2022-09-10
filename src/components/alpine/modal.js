@@ -17,7 +17,9 @@ export default () => ({
 
   btnOpen: {
     ['@click.prevent']() {
-        this.onOpenModal()
+        // this.onOpenModal()
+        this.$dispatch('modal')
+        console.log(1)
     },
   },
 
@@ -27,14 +29,14 @@ export default () => ({
     },
   },
 
-  modal: {
-      [':class']() {
-        return this.isOpen ? 'modal--open' : ''
-    },
-  },
   modalWrapper: {
-    ['@mousedown.outside']() {
-      this.onCloseModal()
-    },  
+    ['@modal.window']() {
+      console.log('modal')
+    }
   },
+  // modalWrapper: {
+  //   ['@mousedown.outside']() {
+  //     this.onCloseModal()
+  //   },  
+  // },
 });

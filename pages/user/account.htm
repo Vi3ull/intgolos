@@ -1,0 +1,59 @@
+url = "/account/:user_id"
+layout = "default"
+title = "Аккаунт"
+
+[UserPage]
+slug = "{{ :user_id }}"
+slug_required = 1
+mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "user/account"
+login_page = "user/login"
+==
+<?php
+  function onStart() {
+    $this['breadcrumbs'] =  [
+      [
+        'title' => 'Аккаунт',
+        'url' => "#",
+        'isActive' => true,
+      ],
+    ];
+  }
+?>
+==
+<div class="container flex flex-wrap space-x-4 space-y-4 py-12">
+  <div class="basis-1/3 border-r-2 border-gray-300 pr-4">
+    <a
+      href="/" 
+      class="btn w-full bg-red-500 mb-3"
+      data-request="Logout::onAjax"
+    >
+      Выйти
+    </a>
+    {% set obUser = UserData.get %}
+    {{ d(obUser) }}
+    {{ user_id }}
+  </div>
+  <div class="basis-2/3">
+    {% set arError = UserPage.getErrorMessage %}
+    {% set arForm = UserPage.getOldFormData %}
+    
+    <form href="{{ 'user_page'|page }}">
+        <label for="field-email">Email</label>
+        <input type="email" id="field-email" placeholder="Email" name="email" value="{{ arForm.email }}">
+        {% if arError.message is not empty and arError.field == 'email' %}
+            <p>{{ arError.message }}</p>
+        {% endif %}
+    
+        <label for="field-company-name">Company name</label>
+        <input type="text" id="field-company-name" placeholder="My company" name="property[company_name]" value="{{ arForm.property.company_name }}">
+    
+        <button type="submit">Submit</button>
+    </form>
+    {% if arError.message is not empty %}
+        <p>{{ arError.message }}</p>
+    {% endif %}
+  </div>
+</div>

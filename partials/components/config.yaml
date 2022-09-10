@@ -7,40 +7,15 @@ editor:
       type: richeditor
 
 intro:
-  name: Карусель
-  description: Карусель
+  name: Интро
+  description: Интро
   icon: icon-film
   fields:
-    items: 
-      type: repeater
-      prompt: Добавить слайд
-      style: collapsed
-      form: 
-        fields:
-          image: 
-            label: Изображение
-            type: mediafinder
-            required: true
-          title:
-            label: Заголовок
-            type: richeditor
-            toolbarButtons: paragraphStyle, |, paragraphFormat
-            size: small
-          description:
-            label: Описание
-            type: richeditor
-            size: large
-          btn_link: 
-            label: Ссылка кнопки
-            type: text
-            span: left
-            default: "#"
-          btn_text: 
-            label: Текст кнопки
-            type: text
-            span: right
+    content:
+      type: nestedform
+      form: ~/themes/intgolos/partials/components/intro/_.yaml
 
-about:
+about_us:
   name: О компании
   description: О компании
   icon: icon-building

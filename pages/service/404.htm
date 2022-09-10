@@ -1,10 +1,22 @@
-title = "Page not found (404)"
+title = "Страница не найдена (404)"
 url = "/404"
 layout = "default"
 ==
-<div class="jumbotron">
-    <div class="container">
-        <h1>Page not found</h1>
-        <p>We're sorry, but the page you requested cannot be found.</p>
-    </div>
+<?php
+  function onStart() {
+    $this['breadcrumbs'] =  [
+      [
+        'title' => 'Страница не найдена (404)',
+        'url' => "#",
+        'isActive' => true,
+      ],
+    ];
+  }
+?>
+==
+<div class="container py-12">
+    <div class="prose prose-headings:text-2xl prose-p:text-base ">
+        <h1>Страница не найдена</h1>
+        <p>К сожалению, запрошенная вами страница не найдена.</p>
+    </div>  
 </div>

@@ -1,0 +1,59 @@
+title = "Авторизация"
+url = "/login"
+layout = "default"
+==
+<?php
+  function onStart() {
+    $this['breadcrumbs'] =  [
+      [
+        'title' => 'Авторизация',
+        'url' => "#",
+        'isActive' => true,
+      ],
+    ];
+  }
+?>
+==
+<div class="container flex flex-col py-12">
+  {{ form_open({ 
+    request: 'Login::onAjax', 
+    url: 'registration'|page, 
+    class: 'flex flex-col w-full max-w-prose mx-auto' 
+  }) 
+  }}
+    {% 
+      partial 'components/form/form_group' 
+      type="email"
+      id="email-" ~ blockId
+      placeholder="Email"
+      name="email"
+      value=arForm.email
+      label="Email"
+    %}
+
+    {% 
+      partial 'components/form/form_group' 
+      type="password"
+      id="password-" ~ blockId
+      placeholder="Пароль"
+      name="password"
+      label="Пароль"
+    %}
+
+    {% 
+      partial 'components/form/form_check' 
+      type="checkbox"
+      id="field-remember_me-" ~ blockId
+      name="remember_me"
+      label="Запомнить меня"
+    %}
+    <button type="submit" class="btn mt-2 mb-4 mx-auto">Авторизоваться</button>
+  {{ form_close() }}
+  {% if arError.message is not empty %}
+    <p>{{ arError.message }}</p>
+  {% endif %}
+  <div class="flex flex-col w-full max-w-prose mx-auto font-nunito font-normal text-sm text-gray-500 text-center p-4 mt-4">
+    <a href="{{ 'user/registration' | page }}" class="btn bg-green-500 mb-3">Зарегистрироваться</a>
+    <p>После регистрации вы получите доступ ко всем возможностям Интголос</p>
+  </div>
+</div>

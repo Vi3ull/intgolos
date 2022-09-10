@@ -1,0 +1,19 @@
+url = "/members/:user_id"
+layout = "default"
+title = "Аккаунт участника"
+
+[UserData]
+==
+<?php
+  function onStart() {
+    $this['breadcrumbs'] =  [
+      [
+        'title' => 'Аккаунт участника',
+        'url' => "#",
+        'isActive' => true,
+      ],
+    ];
+  }
+?>
+==
+{{ d(UserData) }}

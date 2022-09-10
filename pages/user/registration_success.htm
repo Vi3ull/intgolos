@@ -1,0 +1,23 @@
+title = "Успешная регистрация"
+url = "/registration-success"
+layout = "default"
+==
+<?php
+  function onStart() {
+    $this['breadcrumbs'] =  [
+      [
+        'title' => 'Успешная регистрация',
+        'url' => "#",
+        'isActive' => true,
+      ],
+    ];
+  }
+?>
+==
+<div class="container py-12">
+  <div class="prose prose-headings:text-2xl prose-p:text-base ">
+    <h1>Успешная регистрации</h1>
+    <p>Вы успешно зарегистрировали нового пользователя.</p>
+    <a href=""></a>
+  </div>
+</div>

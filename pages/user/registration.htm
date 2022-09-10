@@ -1,12 +1,36 @@
 title = "Регистрация"
 url = "/registration"
 layout = "default"
+
+[Registration]
+mode = "ajax"
+flash_on = 1
+redirect_on = 1
+redirect_page = "user/registration_success"
+activation = "activation_on"
+force_login = 1
 ==
-<div>
+<?php
+  function onStart() {
+    $this['breadcrumbs'] =  [
+      [
+        'title' => 'Регистрация',
+        'url' => "#",
+        'isActive' => true,
+      ],
+    ];
+  }
+?>
+==
+<div class="container flex flex-col py-12">
+  <div class="prose prose-headings:text-2xl prose-p:text-base w-full mb-8 mx-auto">
+    <h1>Регистрация</h1>
+    <p>После регистрации вы получите доступ ко всем возможностям Интголос</p>
+  </div>
   {{ form_open({ 
       request: 'Registration::onAjax', 
       url: 'registration'|page, 
-      class: 'flex flex-col items-center' 
+      class: 'flex flex-col items-center w-full max-w-prose mx-auto' 
     }) 
   }}
     {% 
@@ -14,7 +38,7 @@ layout = "default"
       type="text"
       id="name-" ~ blockId
       placeholder="Имя"
-      name="name" ~ blockId
+      name="name"
       value=arForm.name
       label="Имя"
     %}

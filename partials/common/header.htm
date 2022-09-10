@@ -1,7 +1,9 @@
+{% set obUser = UserData.get %}
+
 <header class="sticky top-0 bg-clr-header z-50 rounded-b-md shadow-md shadow-gray-300">
   <div class="relative container flex flex-wrap items-center justify-between py-2 xl:py-0">
     <div class="text-2xl text-clr-cta font-nunito font-bold uppercase">
-      <a href="/">
+      <a href="{{ this.page.url == '/' ? '#' : '/' }}">
         Интголос
       </a>
     </div>    
@@ -26,10 +28,10 @@
             </a
             >
             <a 
-              href="https://intgolos.ru/pay"
+              href="{{ obUser.isNotEmpty ? 'user/account' | page({user_id: obUser.id}) : 'user/login' | page }}"
               class="btn max-h-10"
             >
-              Участвовать
+              {{ obUser.isNotEmpty ? 'Аккаунт' : 'Участвовать' }} 
             </a>
           </div>
         </div>
@@ -37,6 +39,7 @@
       <a 
         href="/page-list" 
         class="block xl:hidden w-10 h-10 border-2 border-gray-300 rounded-md ml-4"
+        x-data="modal"
         x-bind="btnOpen"
       >
         {% partial 'common/icon' class="w-full h-full text-gray-300 stroke-gray-600 p-1" icon="menu" %}

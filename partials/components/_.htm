@@ -4,9 +4,30 @@
     {% partial "components/intro" data=block %}
   {% endif %}
 
-  {% if block._group == "why_us" %}
-    {% partial "components/why_us" data=block %}
+  {% if block._group == "about_us" %}
+    {% partial "components/about_us" data=block %}
   {% endif %}
+
+  {% if block._group == "steps" %}
+    {% partial "components/steps" data=block %}
+  {% endif %}
+
+  {% if block._group == "offer" %}
+    {% partial "components/offer" data=block %}
+  {% endif %}
+
+  {% if block._group == "voting" %}
+    {% partial "components/voting" data=block %}
+  {% endif %}
+
+  {% if block._group == "information" %}
+    {% partial "components/information" data=block %}
+  {% endif %}
+
+  {% if block._group == "counter" %}
+    {% partial "components/counter" data=block %}
+  {% endif %}
+
 
   {% if block._group == "our_services" %}
     {% partial "components/our_services" data=block %}
@@ -20,9 +41,7 @@
     {% partial "components/pricing" data=block %}
   {% endif %}
 
-  {% if block._group == "offer" %}
-    {% partial "components/offer" data=block %}
-  {% endif %}
+
   
   {% if block._group == "editor" %}
     {% partial "components/editor" data=block %}

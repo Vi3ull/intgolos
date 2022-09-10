@@ -3970,17 +3970,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.isOpen = false;
     },
     btnOpen: _defineProperty({}, '@click.prevent', function clickPrevent() {
-      this.onOpenModal();
+      // this.onOpenModal()
+      this.$dispatch('modal');
+      console.log(1);
     }),
     btnClose: _defineProperty({}, '@click.prevent', function clickPrevent() {
       this.onCloseModal();
     }),
-    modal: _defineProperty({}, ':class', function _class() {
-      return this.isOpen ? 'modal--open' : '';
-    }),
-    modalWrapper: _defineProperty({}, '@mousedown.outside', function mousedownOutside() {
-      this.onCloseModal();
-    })
+    modalWrapper: _defineProperty({}, '@modal.window', function modalWindow() {
+      console.log('modal');
+    }) // modalWrapper: {
+    //   ['@mousedown.outside']() {
+    //     this.onCloseModal()
+    //   },  
+    // },
+
   };
 });
 

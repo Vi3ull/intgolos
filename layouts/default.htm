@@ -12,13 +12,17 @@ code = "general-menu"
 useContent = 0
 default = 0
 
-[Registration]
+[Login]
 mode = "ajax"
-flash_on = 1
 redirect_on = 1
-redirect_page = "registration_success"
-activation = "activation_on"
-force_login = 1
+redirect_page = "user/account"
+
+[Logout]
+mode = "ajax"
+redirect_on = 1
+redirect_page = "dev"
+
+[UserData]
 ==
 <?php
   function onEnd() {
@@ -32,7 +36,7 @@ force_login = 1
   label="Скрыть хлебные крошки"
   type="switch"
   default=1
-  span="right"
+  span="full"
 }
 {/variable}
 {variable 
@@ -63,10 +67,15 @@ force_login = 1
       {% partial 'common/breadcrumbs' %}
     {% endif %}
     
-    <div class="flex-grow">
+    <div 
+      class="flex-grow"
+    >
       <main>
         {% page %}
-        {% partial "components/_" components=pageContent %}
+        {# partial "components/_" components=pageContent #}
+        {% for block in pageContent %}
+            {% partial 'components/' ~ block._group data=block %}
+        {% endfor %}
       </main>    
     </div>
     
