@@ -63,7 +63,7 @@ mix.version()
 
 mix.browserSync({
     proxy: process.env.APP_URL,
-    host: process.env.APP_URL,
+    // host: process.env.APP_URL,
     browser: 'google chrome',
     notify: false,
     // files: ["/src/css/*.css", "./**/*.htm", "/src/js/**/*.js"]

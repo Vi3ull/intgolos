@@ -1,0 +1,16 @@
+fields:
+  description:
+    label: Описание
+    type: richeditor
+    size: large
+    span: full
+  items: 
+    type: repeater
+    prompt: Добавить элемент
+    style: collapsed
+    form: 
+      fields:
+        description:
+          label: Описание
+          type: richeditor
+          size: large

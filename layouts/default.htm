@@ -51,7 +51,7 @@ redirect_page = "dev"
 }
 {/variable}
 
-{% spaceless %}
+{% apply spaceless %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -72,9 +72,8 @@ redirect_page = "dev"
     >
       <main>
         {% page %}
-        {# partial "components/_" components=pageContent #}
         {% for block in pageContent %}
-            {% partial 'components/' ~ block._group data=block %}
+          {% partial 'components/' ~ block._group ~ '/_' data=block.content %}
         {% endfor %}
       </main>    
     </div>
@@ -85,4 +84,4 @@ redirect_page = "dev"
     {{ this.theme.include_body_end }}
   </body>
 </html>
-{% endspaceless %}
+{% endapply %}

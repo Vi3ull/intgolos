@@ -1,16 +1,6 @@
 ==
 <?php
 function onStart() {
-  $description = '
-  <h2>Голосование</h2>
-  <p>Поиск по возрасту производится путем выбора соответствующей группы.
-    Кнопка "Все" сбрасывает возраст и показывает всех участников.</p>
-  <p>Поиск по названию произведения, имени и региону осуществляется в поле "поиск".
-    Для удобства, вы можете использовать как оба инструмента сразу, так и по отдельности.</p>
-  <p>Посмотреть и выставить оценку может любой посетитель сайта</p>';
-
-  $this->page['description'] = $description;
-
   $filters = array('Все','Лидеры месяца','Лидеры полугодия','7-14 лет','15-18 лет','19-30 лет','31-50 лет','51-100 лет');
 
   $this->page['filters'] = $filters;
@@ -20,7 +10,7 @@ function onStart() {
 <section class="py-24">
   <div class="container">
     <div class="prose max-w-none">
-      {{ this.page.description | raw }}
+      {{ data.description | raw }}
     </div>
     <div class="flex flex-wrap justify-between items-baseline py-8">
       <form class="flex flex-wrap items-ceter">

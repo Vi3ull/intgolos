@@ -1,33 +1,14 @@
-==
-<?php
-function onStart() {
-  $description = '
-    <h3>Розыгрыш июля</h3>
-    <p>3 сертификата на профессиональную запись песни в студии вашего города</p>
-  ';
-
-  $this->page['description'] = $description;
-  
-  $winners = '
-    <p>Победители июля: Виктория Комарова, Нифонтов Александр, DarkDream</p>
-  ';
-
-  $this->page['winners'] = $winners;
-  $this->page['date'] = '2022, 08, 30';
-}
-?>
-==
 <section class="relative flex items-center justify-center bg-counter bg-center bg-no-repeat bg-cover bg-fixed min-h-offer h-full before:absolute before:inset-0 before:bg-clr-overlay/60 before:z-20">
   <div class="container flex flex-wrap items-stretch justify-center my-11 z-30">
-    {%  for item in range(1, 2) %}
+    {%  for item in data.counters %}
     <div class="basis-1/2 p-4">
-      <div class="flex-grow text-center bg-white rounded-md border-2 border-dashed border-clr-cta p-4">
+      <div class="flex flex-col items-center justify-center h-full flex-grow text-center bg-white rounded-md border-2 border-dashed border-clr-cta p-4">
         <div class="prose">
-          {{ this.page.description | raw }}
+          {{ item.description | raw }}
         </div>
         <div 
           class="flex items-center justify-center mt-6" 
-          x-data="timer(new Date().setDate(new Date({{ this.page.date }}).getDate()))"
+          x-data="timer(new Date().setDate(new Date({{ item.date | date('Y, m, d') }}).getDate()))"
         >
           <div class="flex flex-col border-r border-clr-cta">
             <span class="font-nunito font-semibold text-clr-text text-4xl sm:text-6xl mx-4" x-text="time().days"></span>
@@ -47,7 +28,7 @@ function onStart() {
           </div>
         </div>
         <div class="font-nunito font-light text-xs text-clr-text mt-4">
-          {{ this.page.winners | raw }}
+          {{ item.caption | raw }}
         </div>
       </div>
     </div>

@@ -1,0 +1,9 @@
+fields:
+  description:
+    label: Описание
+    type: richeditor
+    size: large
+    span: full
+  image: 
+    label: Изображение
+    type: mediafinder

@@ -1,19 +1,7 @@
-==
-<?php
-function onStart() {
-  $description = '
-    <h3>Победители сезонов</h3>
-    <p>Победители приглашены на отчетный концерт, где будет разыгран главный денежный приз!</p>
-  ';
-
-  $this->page['description'] = $description;
-}
-?>
-==
 <section class="py-12">
   <div class="container">
     <div class="prose">
-      {{ this.page.description | raw }}
+      {{ data.description | raw }}
     </div>
     <ul class="flex flex-wrap -mx-4 mt-10">
       {% for item in range(1, 2) %}

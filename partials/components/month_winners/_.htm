@@ -1,13 +1,6 @@
 ==
 <?php
 function onStart() {
-  $description = '
-    <h3>Победители месяца</h3>
-    <p>Каждый участник не может стать победителем месяца более двух раз. Участники не набравшие 10 баллов в течении месяца будут скрыты в архив. Разблокировка из архива доступна по запросу</p>
-  ';
-
-  $this->page['description'] = $description;
-
   $months = array('Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь');
 
   $this->page['months'] = $months;
@@ -17,7 +10,7 @@ function onStart() {
 <section class="py-12">
   <div class="container">
     <div class="prose text-end ml-auto mr-0">
-      {{ this.page.description | raw }}
+      {{ data.description | raw }}
     </div>
     <ul class="flex flex-wrap -mx-4 mt-10">
       {% for item in this.page.months %}

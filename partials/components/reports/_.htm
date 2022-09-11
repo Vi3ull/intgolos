@@ -1,13 +1,6 @@
 ==
 <?php
 function onStart() {
-  $description = '
-    <h3>ФОТО/ВИДЕО ОТЧЕТЫ</h3>
-    <p>В этом блоке мы размещаем некоторые отчеты о записи победителей</p>
-  ';
-
-  $this->page['description'] = $description;
-
   $items = [
     0 => [
       'name' => "Нифонтов Александр",
@@ -42,7 +35,7 @@ function onStart() {
 <section class="py-12">
   <div class="container">
     <div class="prose max-w-none text-center">
-      {{ this.page.description | raw }}
+      {{ data.description | raw }}
     </div>
     <div class="carousel-reports carousel js-carousel scrollbar my-12">
       <ul class="carousel__wrapper js-carousel-wrapper">
